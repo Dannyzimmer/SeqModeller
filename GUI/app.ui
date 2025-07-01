@@ -1,0 +1,1570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1079</width>
+    <height>788</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1079</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1079</width>
+    <height>851</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>fastaModeller</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/icon.png</normaloff>
+    <normalon>../images/icon.png</normalon>../images/icon.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_20">
+      <property name="leftMargin">
+       <number>8</number>
+      </property>
+      <property name="topMargin">
+       <number>6</number>
+      </property>
+      <property name="rightMargin">
+       <number>6</number>
+      </property>
+      <property name="bottomMargin">
+       <number>6</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_26">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <widget class="QGroupBox" name="group_general">
+            <property name="minimumSize">
+             <size>
+              <width>500</width>
+              <height>180</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>General</string>
+            </property>
+            <widget class="QWidget" name="layoutWidget">
+             <property name="geometry">
+              <rect>
+               <x>12</x>
+               <y>32</y>
+               <width>488</width>
+               <height>136</height>
+              </rect>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_23">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_10">
+                <item>
+                 <widget class="QGroupBox" name="group_seed">
+                  <property name="title">
+                   <string>Seed</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_20">
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_11">
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit_seed"/>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout">
+                    <item>
+                     <widget class="QLabel" name="label_id_padding">
+                      <property name="text">
+                       <string>ID padding</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinBox_id_padding">
+                      <property name="minimumSize">
+                       <size>
+                        <width>50</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>100</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="minimum">
+                       <number>2</number>
+                      </property>
+                      <property name="maximum">
+                       <number>6</number>
+                      </property>
+                      <property name="value">
+                       <number>4</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_2">
+                    <item>
+                     <widget class="QLabel" name="label_seq_wrap">
+                      <property name="text">
+                       <string>Seq. wrap</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_2">
+                      <item>
+                       <widget class="QSpinBox" name="spinBox_seq_wrap">
+                        <property name="minimumSize">
+                         <size>
+                          <width>50</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>100</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="minimum">
+                         <number>1</number>
+                        </property>
+                        <property name="maximum">
+                         <number>1000</number>
+                        </property>
+                        <property name="value">
+                         <number>70</number>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="group_proportion">
+                <property name="title">
+                 <string>Proportion</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_18">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_17">
+                   <item>
+                    <widget class="QGroupBox" name="group_A">
+                     <property name="title">
+                      <string>A</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_16">
+                      <item>
+                       <widget class="QDoubleSpinBox" name="doubleSpinBox_A">
+                        <property name="maximum">
+                         <double>1.000000000000000</double>
+                        </property>
+                        <property name="singleStep">
+                         <double>0.010000000000000</double>
+                        </property>
+                        <property name="value">
+                         <double>0.250000000000000</double>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="group_T">
+                     <property name="title">
+                      <string>T</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_17">
+                      <item>
+                       <widget class="QDoubleSpinBox" name="doubleSpinBox_T">
+                        <property name="maximum">
+                         <double>1.000000000000000</double>
+                        </property>
+                        <property name="singleStep">
+                         <double>0.010000000000000</double>
+                        </property>
+                        <property name="value">
+                         <double>0.250000000000000</double>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="group_C">
+                     <property name="title">
+                      <string>C</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_18">
+                      <item>
+                       <widget class="QDoubleSpinBox" name="doubleSpinBox_C">
+                        <property name="maximum">
+                         <double>1.000000000000000</double>
+                        </property>
+                        <property name="singleStep">
+                         <double>0.010000000000000</double>
+                        </property>
+                        <property name="value">
+                         <double>0.250000000000000</double>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="group_G">
+                     <property name="title">
+                      <string>G</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_19">
+                      <item>
+                       <widget class="QDoubleSpinBox" name="doubleSpinBox_G">
+                        <property name="maximum">
+                         <double>1.000000000000000</double>
+                        </property>
+                        <property name="singleStep">
+                         <double>0.010000000000000</double>
+                        </property>
+                        <property name="value">
+                         <double>0.250000000000000</double>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="group_batches">
+            <property name="title">
+             <string>Batches</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_19">
+                 <item>
+                  <widget class="QLabel" name="label_base_id">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Base ID</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_base_id">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_new_seq">
+                   <property name="text">
+                    <string>Add</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_3">
+                 <item>
+                  <widget class="Line" name="line">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QListView" name="sequence_list">
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout">
+                   <item>
+                    <widget class="QPushButton" name="btn_rm_seq">
+                     <property name="text">
+                      <string>Remove</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="group_output">
+            <property name="title">
+             <string>Output</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_28">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_26">
+               <item>
+                <widget class="QLabel" name="label_report">
+                 <property name="text">
+                  <string>Report</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_21">
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_report">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_report">
+                   <property name="text">
+                    <string>...</string>
+                   </property>
+                   <property name="flat">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_31">
+               <item>
+                <widget class="QLabel" name="label_config_json">
+                 <property name="text">
+                  <string>Config JSON</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_25">
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_config_json">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_config_json">
+                   <property name="text">
+                    <string>...</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_27">
+               <item>
+                <widget class="QLabel" name="label_fasta">
+                 <property name="text">
+                  <string>FASTA</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_22">
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_fasta">
+                   <property name="readOnly">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_fasta">
+                   <property name="text">
+                    <string>...</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="group_configuration">
+          <property name="title">
+           <string>Batch configuration</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_29">
+             <item>
+              <widget class="QTabWidget" name="tabWidget">
+               <property name="currentIndex">
+                <number>1</number>
+               </property>
+               <widget class="QWidget" name="tab">
+                <attribute name="title">
+                 <string>Random generation</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_25">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_24">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_22">
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_15">
+                       <item>
+                        <widget class="QLabel" name="label_generate">
+                         <property name="minimumSize">
+                          <size>
+                           <width>70</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>75</width>
+                           <height>25</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>Generate</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_5">
+                         <item>
+                          <widget class="QSlider" name="horizontalSlider_generate">
+                           <property name="minimumSize">
+                            <size>
+                             <width>100</width>
+                             <height>0</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>16777215</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                           <property name="minimum">
+                            <number>0</number>
+                           </property>
+                           <property name="maximum">
+                            <number>10000</number>
+                           </property>
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QSpinBox" name="spinBox_generate">
+                           <property name="maximum">
+                            <number>1000000</number>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_6">
+                       <item>
+                        <widget class="QLabel" name="label_max_len">
+                         <property name="minimumSize">
+                          <size>
+                           <width>70</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>75</width>
+                           <height>25</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>Max. length</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_4">
+                         <item>
+                          <widget class="QSlider" name="horizontalSlider_max_len">
+                           <property name="minimumSize">
+                            <size>
+                             <width>100</width>
+                             <height>0</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>16777215</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                           <property name="minimum">
+                            <number>2</number>
+                           </property>
+                           <property name="maximum">
+                            <number>10000</number>
+                           </property>
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QSpinBox" name="spinBox_max_len">
+                           <property name="minimum">
+                            <number>1</number>
+                           </property>
+                           <property name="maximum">
+                            <number>1000000</number>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_8">
+                       <item>
+                        <widget class="QLabel" name="label_min_len">
+                         <property name="minimumSize">
+                          <size>
+                           <width>70</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>75</width>
+                           <height>25</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>Min. length</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_3">
+                         <item>
+                          <widget class="QSlider" name="horizontalSlider_min_len">
+                           <property name="minimumSize">
+                            <size>
+                             <width>100</width>
+                             <height>0</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>16777215</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                           <property name="minimum">
+                            <number>1</number>
+                           </property>
+                           <property name="maximum">
+                            <number>10000</number>
+                           </property>
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QSpinBox" name="spinBox_min_len">
+                           <property name="maximum">
+                            <number>1000000</number>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_2">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="btn_random_generation_save">
+                     <property name="text">
+                      <string>Save</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tab_2">
+                <attribute name="title">
+                 <string>Inserts</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_32">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_16">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_5">
+                     <item>
+                      <widget class="QTableWidget" name="table_inserts">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>100</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_8">
+                       <item>
+                        <widget class="QPushButton" name="btn_new_insert">
+                         <property name="text">
+                          <string>New</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btn_rm_insert">
+                         <property name="text">
+                          <string>Remove</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="group_insert_edit">
+                     <property name="minimumSize">
+                      <size>
+                       <width>300</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="title">
+                      <string>Edit</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_14">
+                      <item>
+                       <layout class="QVBoxLayout" name="verticalLayout_13">
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_12">
+                          <item>
+                           <widget class="QLabel" name="label_insert_seq">
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>Sequence</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_15">
+                            <item>
+                             <widget class="QLineEdit" name="lineEdit_insert_seq">
+                              <property name="text">
+                               <string/>
+                              </property>
+                              <property name="maxLength">
+                               <number>10000000</number>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="btn_insert_open_sequence">
+                              <property name="text">
+                               <string>...</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="max_split_2">
+                          <item>
+                           <widget class="QLabel" name="label_insert_total">
+                            <property name="minimumSize">
+                             <size>
+                              <width>70</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>80</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>Total</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer">
+                            <property name="orientation">
+                             <enum>Qt::Orientation::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_insert_total">
+                            <property name="minimumSize">
+                             <size>
+                              <width>138</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="horizontalLayout_14">
+                          <item>
+                           <widget class="QLabel" name="label_insert_mutation_rate">
+                            <property name="text">
+                             <string>Mutation rate</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QDoubleSpinBox" name="doubleSpinBox_insert_mut_rate">
+                            <property name="decimals">
+                             <number>3</number>
+                            </property>
+                            <property name="maximum">
+                             <double>1.000000000000000</double>
+                            </property>
+                            <property name="singleStep">
+                             <double>0.001000000000000</double>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="max_split">
+                          <item>
+                           <widget class="QLabel" name="label_insert_max_split">
+                            <property name="minimumSize">
+                             <size>
+                              <width>70</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>80</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>Max. split</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSlider" name="horizontalSlider_insert_max_split">
+                            <property name="orientation">
+                             <enum>Qt::Orientation::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_insert_max_split"/>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="min_split">
+                          <item>
+                           <widget class="QLabel" name="label_insert_min_split">
+                            <property name="minimumSize">
+                             <size>
+                              <width>70</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>Min. split</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSlider" name="horizontalSlider_insert_min_split">
+                            <property name="orientation">
+                             <enum>Qt::Orientation::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_insert_min_split"/>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="min_split_2">
+                          <item>
+                           <widget class="QLabel" name="label_insert_ave_gap">
+                            <property name="minimumSize">
+                             <size>
+                              <width>70</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>Ave. gap</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSlider" name="horizontalSlider_insert_min_split_2">
+                            <property name="orientation">
+                             <enum>Qt::Orientation::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_insert_ave_gap"/>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="min_split_3">
+                          <item>
+                           <widget class="QLabel" name="label_insert_ave_gap_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>70</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>Sd. gap</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSlider" name="horizontalSlider_insert_min_split_3">
+                            <property name="orientation">
+                             <enum>Qt::Orientation::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_insert_sd_gap"/>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <spacer name="verticalSpacer_3">
+                          <property name="orientation">
+                           <enum>Qt::Orientation::Vertical</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>20</width>
+                            <height>40</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_insert_save">
+                          <property name="text">
+                           <string>Save</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="widget">
+                <attribute name="title">
+                 <string>Repeats</string>
+                </attribute>
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_7">
+                   <item>
+                    <widget class="QTableWidget" name="table_repeats">
+                     <property name="minimumSize">
+                      <size>
+                       <width>150</width>
+                       <height>100</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>300</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_9">
+                     <item>
+                      <widget class="QPushButton" name="btn_new_repeat">
+                       <property name="text">
+                        <string>New</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_rm_repeat">
+                       <property name="text">
+                        <string>Remove</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="group_repeat_edit">
+                   <property name="minimumSize">
+                    <size>
+                     <width>300</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="title">
+                    <string>Edit</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_23">
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_11">
+                      <item>
+                       <widget class="QLabel" name="label_pattern">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Pattern</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_pattern">
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="maxLength">
+                         <number>10000000</number>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_12">
+                      <item>
+                       <widget class="QLabel" name="label_likelihood">
+                        <property name="text">
+                         <string>Likelihood</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QDoubleSpinBox" name="doubleSpinBox_likelihood">
+                        <property name="decimals">
+                         <number>3</number>
+                        </property>
+                        <property name="maximum">
+                         <double>1.000000000000000</double>
+                        </property>
+                        <property name="singleStep">
+                         <double>0.001000000000000</double>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_10">
+                      <item>
+                       <widget class="QLabel" name="label_max_reps">
+                        <property name="minimumSize">
+                         <size>
+                          <width>70</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>80</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Max. reps.</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QSlider" name="horizontalSlider_max_reps">
+                        <property name="maximum">
+                         <number>1000</number>
+                        </property>
+                        <property name="orientation">
+                         <enum>Qt::Orientation::Horizontal</enum>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QSpinBox" name="spinBox_max_reps">
+                        <property name="maximum">
+                         <number>10000</number>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_7">
+                      <item>
+                       <widget class="QLabel" name="label_min_reps">
+                        <property name="minimumSize">
+                         <size>
+                          <width>70</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Min. reps</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QSlider" name="horizontalSlider_min_reps">
+                        <property name="maximum">
+                         <number>1000</number>
+                        </property>
+                        <property name="orientation">
+                         <enum>Qt::Orientation::Horizontal</enum>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QSpinBox" name="spinBox_min_reps">
+                        <property name="maximum">
+                         <number>10000</number>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer">
+                      <property name="orientation">
+                       <enum>Qt::Orientation::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>249</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="btn_rep_save">
+                      <property name="text">
+                       <string>Save</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_24">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_generate">
+          <property name="minimumSize">
+           <size>
+            <width>900</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Generate</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_33">
+          <property name="spacing">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QRadioButton" name="radioButton_only_report">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Only report</string>
+            </property>
+            <property name="autoExclusive">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_only_json">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Only config</string>
+            </property>
+            <property name="autoRepeat">
+             <bool>false</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Policy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1079</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuRecent_files">
+     <property name="title">
+      <string>Recent files...</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="actionRemove_recent_files"/>
+    </widget>
+    <addaction name="actionImport_config"/>
+    <addaction name="menuRecent_files"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAyuda"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About...</string>
+   </property>
+  </action>
+  <action name="actionImport_config">
+   <property name="text">
+    <string>Import config...</string>
+   </property>
+  </action>
+  <action name="actionRemove_recent_files">
+   <property name="text">
+    <string>Remove recent files</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>horizontalSlider_min_len</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_min_len</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>818</x>
+     <y>428</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1072</x>
+     <y>434</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_max_len</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_max_len</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>818</x>
+     <y>362</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1072</x>
+     <y>368</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_generate</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_generate</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>818</x>
+     <y>296</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1072</x>
+     <y>302</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_insert_max_split</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_insert_max_split</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1001</x>
+     <y>447</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1025</x>
+     <y>442</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_insert_min_split</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_insert_min_split</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1007</x>
+     <y>479</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1046</x>
+     <y>484</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_insert_min_split_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_insert_ave_gap</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>994</x>
+     <y>522</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1028</x>
+     <y>523</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_insert_min_split_3</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_insert_sd_gap</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1005</x>
+     <y>561</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1029</x>
+     <y>560</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_max_reps</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_max_reps</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>987</x>
+     <y>409</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1030</x>
+     <y>398</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_min_reps</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_min_reps</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>981</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1050</x>
+     <y>439</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_only_report</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>radioButton_only_json</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>936</x>
+     <y>837</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>933</x>
+     <y>857</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_only_json</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>radioButton_only_report</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1011</x>
+     <y>861</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1012</x>
+     <y>840</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

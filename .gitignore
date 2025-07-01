@@ -1,0 +1,9 @@
+dist/
+deploy-config.json
+__pycache__
+.vscode
+old/
+.debug*
+.venv
+env
+.sm_*

@@ -1,0 +1,50 @@
+{
+    "id_padding": 4,
+    "seq_wrap": 70,
+    "seed": false,
+    "sequences": [
+        {   
+            "base_id": "TEST",
+            "generate": 10,
+            "max_len": 1000,
+            "min_len": 500,
+            "proportion": {"A": 0.20, "T": 0.25, "C": 0.20, "G": 0.35},
+            "repeats": [
+                {
+                    "likelihood": 0.5,
+                    "pattern": "ATCATT",
+                    "pattern_max_reps": 50,
+                    "pattern_min_reps": 10 
+                },
+                {
+                    "likelihood": 0.04,
+                    "pattern": "CA",
+                    "pattern_max_reps": 10,
+                    "pattern_min_reps": 5 
+                }
+            ],
+            "inserts": [
+                {
+                    "total": 4,
+                    "max_split": 0,
+                    "min_split": 0,
+                    "ave_gap": 0,
+                    "sd_gap": 0,
+                    "mutation_rate": 0.05,
+                    "sequence": "CCCCCCTTAAACACTTATACGGTAG"
+                },
+                {
+                    "total": 10,
+                    "max_split": 5,
+                    "min_split": 0,
+                    "ave_gap": 5,
+                    "sd_gap": 2,
+                    "mutation_rate": 0.5,
+                    "sequence": "AAAAAAAATGTGTAATTTTGACCAC"
+                }
+            ]
+            
+        }
+    ]
+
+}

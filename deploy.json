@@ -1,0 +1,21 @@
+{
+  "singularity_image": "",
+  "deploy_dirs": [],
+  "nuitka": {
+    "remove_output": true,
+    "lto": false,
+    "onefile": true,
+    "static_libpython": true,
+    "output_dir": "dist",
+    "output_filename": "SeqModeller",
+    "script": "main.py",
+    "other_flags": [
+      "--include-data-dir=GUI=GUI",
+      "--include-data-dir=images=images",
+      "--include-package=libs",
+      "--enable-plugin=pyqt6",
+      "--windows-disable-console",
+      "--assume-yes-for-downloads"
+    ]
+  }
+}
