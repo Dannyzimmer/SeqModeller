@@ -2,8 +2,7 @@
 
 A powerful GUI application for generating synthetic DNA sequences with customizable patterns, insertions, and repeats. Perfect for bioinformatics research, testing sequence analysis tools, and creating controlled datasets.
 
-<!-- Add screenshot here -->
-![sequenceModeller Interface](images/screenshot.png)
+<img src="images/screenshot.png" alt="sequenceModeller Interface" width="700"/>
 
 ## Features
 
