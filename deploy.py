@@ -4,7 +4,7 @@ deploy.py: Build a Python script into a standalone executable using Nuitka insid
 and copy the resulting binary to one or more target directories, all driven by a JSON config.
 
 Usage:
-    ./deploy.py [--config deploy-config.json] [--dry-run] [--verbose]
+    ./deploy.py [--config deploy-config.json] [--dry-run] [--verbose] [--skip-pre-build]
 
 Configuration file (JSON) example:
 {
@@ -13,6 +13,12 @@ Configuration file (JSON) example:
     "/opt/apps/EnvHandler",
     "/home/user/bin"
   ],
+  "pre_build": {
+    "enabled": true,
+    "script": "build_resources.py",
+    "working_directory": ".",
+    "args": ["--compile-ui", "--compile-resources"]
+  },
   "nuitka": {
     "remove_output": true,
     "lto": false,
@@ -59,6 +65,72 @@ def validate_data_dependencies(other_flags):
     
     return warnings
 
+def run_pre_build_script(pre_build_config, dry_run=False, verbose=False):
+    """Execute pre-build script if configured"""
+    if not pre_build_config.get("enabled", False):
+        return True
+    
+    script = pre_build_config.get("script")
+    if not script:
+        print("Warning: pre_build enabled but no script specified")
+        return True
+    
+    script_path = Path(script)
+    if not script_path.exists():
+        print(f"Error: Pre-build script '{script}' not found", file=sys.stderr)
+        return False
+    
+    working_dir = Path(pre_build_config.get("working_directory", "."))
+    args = pre_build_config.get("args", [])
+    
+    print(f"Running pre-build script: {script}")
+    if verbose:
+        print(f"Working directory: {working_dir}")
+        print(f"Arguments: {args}")
+    
+    if dry_run:
+        print("DRY RUN: Would execute pre-build script")
+        return True
+    
+    # Determine how to execute the script based on extension
+    if script_path.suffix == ".py":
+        cmd = ["python3", str(script_path)] + args
+    elif script_path.suffix in [".sh", ".bash"]:
+        cmd = ["bash", str(script_path)] + args
+    else:
+        # Try to execute directly
+        cmd = [str(script_path)] + args
+    
+    if verbose:
+        print(f"Command: {' '.join(cmd)}")
+    
+    try:
+        result = subprocess.run(
+            cmd, 
+            cwd=working_dir,
+            capture_output=not verbose,
+            text=True,
+            check=True
+        )
+        
+        if verbose and result.stdout:
+            print("Pre-build script output:")
+            print(result.stdout)
+            
+        print("Pre-build script completed successfully")
+        return True
+        
+    except subprocess.CalledProcessError as e:
+        print(f"Error: Pre-build script failed with exit code {e.returncode}", file=sys.stderr)
+        if e.stdout:
+            print("STDOUT:", e.stdout, file=sys.stderr)
+        if e.stderr:
+            print("STDERR:", e.stderr, file=sys.stderr)
+        return False
+    except Exception as e:
+        print(f"Error: Failed to execute pre-build script: {e}", file=sys.stderr)
+        return False
+
 def main():
     parser = argparse.ArgumentParser(
         description="Build Python script with Nuitka and deploy to target directories"
@@ -78,6 +150,11 @@ def main():
         action="store_true",
         help="Show verbose output"
     )
+    parser.add_argument(
+        "--skip-pre-build",
+        action="store_true",
+        help="Skip pre-build script execution"
+    )
     
     args = parser.parse_args()
     
@@ -94,6 +171,13 @@ def main():
     except Exception as e:
         print(f"Error: Could not read {config_file}: {e}", file=sys.stderr)
         sys.exit(1)
+
+    # Execute pre-build script if configured and not skipped
+    if not args.skip_pre_build:
+        pre_build_config = cfg.get("pre_build", {})
+        if not run_pre_build_script(pre_build_config, args.dry_run, args.verbose):
+            print("Pre-build script failed, aborting deployment", file=sys.stderr)
+            sys.exit(1)
 
     # Validate singularity image
     sif = Path(cfg.get("singularity_image", ""))
