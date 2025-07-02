@@ -8,6 +8,9 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QMessageBox,
                             QDialog, QPlainTextEdit, QVBoxLayout, QPushButton,
                             QLabel)
 from PyQt6.QtCore import Qt, QStringListModel
+from GUI.app_ui import Ui_MainWindow
+from GUI.about_ui import Ui_Form
+import resources_rc
 
 BIN_PATH = os.path.dirname(sys.argv[0])
 SESSION_FILE = os.path.join(BIN_PATH, ".sm_session.json")
@@ -67,23 +70,16 @@ class InsertFormDialog(QDialog):
     def get_text(self):
         return self.text_edit.toPlainText().replace('\n', '').replace('\r', '')
 
-class AboutDialog(QDialog):
+class AboutDialog(QDialog, Ui_Form):
     """Simple About dialog"""
     def __init__(self, parent=None):
         super().__init__()
-        path = get_path_to_ui("about.ui")
-        uic.loadUi(path, self)
+        self.setupUi(self)
 
-class FastaModellerMainWindow(QMainWindow):
+class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        
-        # Load interface from .ui file
-        try:
-            path = get_path_to_ui("app.ui")
-            uic.loadUi(path, self)
-        except:
-            self.setup_ui_manually()
+        self.setupUi(self)
         
         # Set window icon
         self.set_window_icon()
@@ -117,14 +113,9 @@ class FastaModellerMainWindow(QMainWindow):
     def set_window_icon(self):
         """Set the window icon"""
         try:
-            icon_path = get_resource_path("images/icon.png")
-            if os.path.exists(icon_path):
-                self.setWindowIcon(QtGui.QIcon(str(icon_path)))
-            else:
-                # Fallback: try relative path
-                fallback_path = "images/icon.png"
-                if os.path.exists(fallback_path):
-                    self.setWindowIcon(QtGui.QIcon(fallback_path))
+            # Try resource first
+            icon = QtGui.QIcon(":/images/window_icon")
+            self.setWindowIcon(icon)
         except Exception as e:
             print(f"Warning: Could not load window icon: {e}")
     
@@ -1486,7 +1477,7 @@ def main():
     app.setStyle('Fusion')
     
     try:
-        window = FastaModellerMainWindow()
+        window = SeqModellerMainWindow()
         window.show()
         sys.exit(app.exec())
     except Exception as e:
