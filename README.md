@@ -1,8 +1,8 @@
-# sequenceModeller
+# SeqModeller
 
 A powerful GUI application for generating synthetic DNA sequences with customizable patterns, insertions, and repeats. Perfect for bioinformatics research, testing sequence analysis tools, and creating controlled datasets.
 
-<img src="images/screenshot.png" alt="sequenceModeller Interface" width="700"/>
+<img src="images/screenshot.png" alt="SeqModeller Interface" width="700"/>
 
 ## Features
 
@@ -24,8 +24,8 @@ A powerful GUI application for generating synthetic DNA sequences with customiza
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/sequenceModeller.git
-cd sequenceModeller
+git clone https://github.com/yourusername/SeqModeller.git
+cd SeqModeller
 ```
 
 2. Install dependencies:
@@ -50,7 +50,7 @@ python main.py
 
 ## Configuration Structure
 
-sequenceModeller uses JSON configuration files with the following structure:
+SeqModeller uses JSON configuration files with the following structure:
 
 ```json
 {
@@ -111,20 +111,6 @@ sequenceModeller uses JSON configuration files with the following structure:
 - Recent files menu with automatic path association
 - Persistent settings across application sessions
 - Easy project switching and configuration reuse
-
-## File Structure
-
-```
-sequenceModeller/
-├── main.py                 # Application entry point
-├── GUI/
-│   ├── app.ui             # Main interface definition
-│   └── ...                # Additional UI files
-├── libs/
-│   └── Generator/         # Sequence generation engine
-├── images/                # Screenshots and documentation images
-└── README.md
-```
 
 ## License
 
