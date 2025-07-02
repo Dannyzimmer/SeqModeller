@@ -7,28 +7,28 @@
     <x>0</x>
     <y>0</y>
     <width>1079</width>
-    <height>788</height>
+    <height>850</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>1079</width>
-    <height>700</height>
+    <height>850</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1079</width>
-    <height>851</height>
+    <width>16777215</width>
+    <height>950</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>SeqModeller</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../images/icon.png</normaloff>
-    <normalon>../images/icon.png</normalon>../images/icon.png</iconset>
+   <iconset resource="../resources.qrc">
+    <normaloff>:/images/window_icon</normaloff>
+    <normalon>:/images/window_icon</normalon>:/images/window_icon</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
@@ -82,7 +82,7 @@
                    <string>Seed</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                   </property>
                   <property name="checkable">
                    <bool>true</bool>
@@ -197,7 +197,7 @@
                       <string>A</string>
                      </property>
                      <property name="alignment">
-                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                      <set>Qt::AlignCenter</set>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_16">
                       <item>
@@ -222,7 +222,7 @@
                       <string>T</string>
                      </property>
                      <property name="alignment">
-                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                      <set>Qt::AlignCenter</set>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_17">
                       <item>
@@ -247,7 +247,7 @@
                       <string>C</string>
                      </property>
                      <property name="alignment">
-                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                      <set>Qt::AlignCenter</set>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_18">
                       <item>
@@ -272,7 +272,7 @@
                       <string>G</string>
                      </property>
                      <property name="alignment">
-                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                      <set>Qt::AlignCenter</set>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_19">
                       <item>
@@ -344,7 +344,7 @@
                  <item>
                   <widget class="Line" name="line">
                    <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
+                    <enum>Qt::Horizontal</enum>
                    </property>
                   </widget>
                  </item>
@@ -549,7 +549,7 @@
                             <number>10000</number>
                            </property>
                            <property name="orientation">
-                            <enum>Qt::Orientation::Horizontal</enum>
+                            <enum>Qt::Horizontal</enum>
                            </property>
                           </widget>
                          </item>
@@ -611,7 +611,7 @@
                             <number>10000</number>
                            </property>
                            <property name="orientation">
-                            <enum>Qt::Orientation::Horizontal</enum>
+                            <enum>Qt::Horizontal</enum>
                            </property>
                           </widget>
                          </item>
@@ -673,7 +673,7 @@
                             <number>10000</number>
                            </property>
                            <property name="orientation">
-                            <enum>Qt::Orientation::Horizontal</enum>
+                            <enum>Qt::Horizontal</enum>
                            </property>
                           </widget>
                          </item>
@@ -693,7 +693,7 @@
                    <item>
                     <spacer name="verticalSpacer_2">
                      <property name="orientation">
-                      <enum>Qt::Orientation::Vertical</enum>
+                      <enum>Qt::Vertical</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -835,7 +835,7 @@
                           <item>
                            <spacer name="horizontalSpacer">
                             <property name="orientation">
-                             <enum>Qt::Orientation::Horizontal</enum>
+                             <enum>Qt::Horizontal</enum>
                             </property>
                             <property name="sizeHint" stdset="0">
                              <size>
@@ -911,7 +911,7 @@
                           <item>
                            <widget class="QSlider" name="horizontalSlider_insert_max_split">
                             <property name="orientation">
-                             <enum>Qt::Orientation::Horizontal</enum>
+                             <enum>Qt::Horizontal</enum>
                             </property>
                            </widget>
                           </item>
@@ -938,7 +938,7 @@
                           <item>
                            <widget class="QSlider" name="horizontalSlider_insert_min_split">
                             <property name="orientation">
-                             <enum>Qt::Orientation::Horizontal</enum>
+                             <enum>Qt::Horizontal</enum>
                             </property>
                            </widget>
                           </item>
@@ -965,7 +965,7 @@
                           <item>
                            <widget class="QSlider" name="horizontalSlider_insert_min_split_2">
                             <property name="orientation">
-                             <enum>Qt::Orientation::Horizontal</enum>
+                             <enum>Qt::Horizontal</enum>
                             </property>
                            </widget>
                           </item>
@@ -992,7 +992,7 @@
                           <item>
                            <widget class="QSlider" name="horizontalSlider_insert_min_split_3">
                             <property name="orientation">
-                             <enum>Qt::Orientation::Horizontal</enum>
+                             <enum>Qt::Horizontal</enum>
                             </property>
                            </widget>
                           </item>
@@ -1004,7 +1004,7 @@
                         <item>
                          <spacer name="verticalSpacer_3">
                           <property name="orientation">
-                           <enum>Qt::Orientation::Vertical</enum>
+                           <enum>Qt::Vertical</enum>
                           </property>
                           <property name="sizeHint" stdset="0">
                            <size>
@@ -1163,7 +1163,7 @@
                          <number>1000</number>
                         </property>
                         <property name="orientation">
-                         <enum>Qt::Orientation::Horizontal</enum>
+                         <enum>Qt::Horizontal</enum>
                         </property>
                        </widget>
                       </item>
@@ -1197,7 +1197,7 @@
                          <number>1000</number>
                         </property>
                         <property name="orientation">
-                         <enum>Qt::Orientation::Horizontal</enum>
+                         <enum>Qt::Horizontal</enum>
                         </property>
                        </widget>
                       </item>
@@ -1213,7 +1213,7 @@
                     <item>
                      <spacer name="verticalSpacer">
                       <property name="orientation">
-                       <enum>Qt::Orientation::Vertical</enum>
+                       <enum>Qt::Vertical</enum>
                       </property>
                       <property name="sizeHint" stdset="0">
                        <size>
@@ -1252,7 +1252,7 @@
         <item>
          <spacer name="horizontalSpacer_2">
           <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -1323,10 +1323,10 @@
         <item>
          <spacer name="horizontalSpacer_3">
           <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeType">
-           <enum>QSizePolicy::Policy::Fixed</enum>
+           <enum>QSizePolicy::Fixed</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -1391,7 +1391,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>horizontalSlider_min_len</sender>

@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="window_icon">images/icon.ico</file>
+    </qresource>
+    <qresource prefix="/ui">
+        <file>GUI/app.ui</file>
+        <file>GUI/about.ui</file>
+        <file>GUI/insert_form.ui</file>
+    </qresource>
+    <qresource prefix="/config">
+        <file>config_template.json</file>
+    </qresource>
+</RCC>
