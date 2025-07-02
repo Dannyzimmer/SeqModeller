@@ -7,3 +7,7 @@ old/
 .venv
 env
 .sm_*
+*_rc.py
+GUI/about_ui.py
+GUI/app_ui.py
+GUI/insert_form_ui.py
