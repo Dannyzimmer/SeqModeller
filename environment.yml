@@ -1,0 +1,28 @@
+name: seqmodeller
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pip
+  
+  # Install packages via pip - minimal working setup
+  - pip:
+    # GUI Framework - Core runtime dependencies
+    - PyQt6==6.4.2
+    
+    # For UI compilation (pyuic6) - using available version
+    - PyQt6-tools==6.4.2.3.3
+    
+    # For resource compilation (pyside6-rcc)
+    - PySide6==6.4.2
+
+# Instructions for use:
+# 1. Remove any existing environment: conda env remove -n seqmodeller
+# 2. Create environment: conda env create -f environment.yml
+# 3. Activate environment: conda activate seqmodeller
+# 4. Run application: python main.py
+
+# If you need nuitka for deployment, install it separately:
+# pip install nuitka>=1.8.0
