@@ -96,6 +96,9 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
         self.recent_files_actions = []  # List of recent file actions
         self.session_file = SESSION_FILE  # Session file
         
+        # Variable to track if any configuration has been saved
+        self.has_saved_config = False
+        
         # Configure model for QListView
         self.sequence_model = QStringListModel()
         self.sequence_list.setModel(self.sequence_model)
@@ -181,6 +184,15 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             # Connection to update max split when insert sequence changes
             self.lineEdit_insert_seq.textChanged.connect(self.update_insert_max_split_constraint)
             
+            # Connection to enable/disable btn_new_seq based on base_id text
+            self.lineEdit_base_id.textChanged.connect(self.update_new_seq_button_state)
+            
+            # Connections to validate proportion sum
+            self.doubleSpinBox_A.valueChanged.connect(self.validate_proportion_sum)
+            self.doubleSpinBox_T.valueChanged.connect(self.validate_proportion_sum)
+            self.doubleSpinBox_C.valueChanged.connect(self.validate_proportion_sum)
+            self.doubleSpinBox_G.valueChanged.connect(self.validate_proportion_sum)
+            
             # Slider-spinbox connections (already in .ui but reinforcing them)
             self.setup_slider_spinbox_connections()
             
@@ -220,6 +232,62 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             self.lineEdit_fasta.setReadOnly(False)
         except AttributeError:
             pass
+    
+    def update_new_seq_button_state(self):
+        """Enable/disable btn_new_seq based on base_id text"""
+        try:
+            has_text = bool(self.lineEdit_base_id.text().strip())
+            self.btn_new_seq.setEnabled(has_text)
+        except AttributeError:
+            pass
+    
+    def update_generate_button_state(self):
+        """Enable/disable btn_generate based on saved configuration state"""
+        try:
+            self.btn_generate.setEnabled(self.has_saved_config)
+        except AttributeError:
+            pass
+    
+    def validate_proportion_sum(self):
+        """Validate that proportion values sum to 1 and update styling"""
+        try:
+            # Get current values
+            a_val = self.doubleSpinBox_A.value()
+            t_val = self.doubleSpinBox_T.value()
+            c_val = self.doubleSpinBox_C.value()
+            g_val = self.doubleSpinBox_G.value()
+            
+            total = a_val + t_val + c_val + g_val
+            
+            # Check if sum is approximately 1 (allowing small floating point errors)
+            is_valid = abs(total - 1.0) < 0.001
+            
+            # Define styles
+            normal_style = ""
+            error_style = "QDoubleSpinBox { color: red; }"
+            
+            # Apply styles
+            style = normal_style if is_valid else error_style
+            self.doubleSpinBox_A.setStyleSheet(style)
+            self.doubleSpinBox_T.setStyleSheet(style)
+            self.doubleSpinBox_C.setStyleSheet(style)
+            self.doubleSpinBox_G.setStyleSheet(style)
+            
+        except AttributeError:
+            pass
+    
+    def check_proportion_sum_valid(self):
+        """Check if proportion sum is valid (equals 1)"""
+        try:
+            a_val = self.doubleSpinBox_A.value()
+            t_val = self.doubleSpinBox_T.value()
+            c_val = self.doubleSpinBox_C.value()
+            g_val = self.doubleSpinBox_G.value()
+            
+            total = a_val + t_val + c_val + g_val
+            return abs(total - 1.0) < 0.001
+        except AttributeError:
+            return True  # Default to valid if we can't check
     
     def load_recent_files(self):
         """Load recent files list from session file"""
@@ -588,11 +656,20 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             self.group_insert_edit.setEnabled(False)
             self.group_repeat_edit.setEnabled(False)
             
+            # Disable generate button initially (no saved config)
+            self.btn_generate.setEnabled(False)
+            
+            # Disable new sequence button initially (no text in base_id)
+            self.btn_new_seq.setEnabled(False)
+            
             # Configure tables
             self.setup_tables()
             
             # Default values
             self.set_default_values()
+            
+            # Initial validation of proportion sum
+            self.validate_proportion_sum()
             
         except AttributeError:
             pass
@@ -697,6 +774,11 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
                 # Reset selection
                 self.current_sequence = None
                 self.group_configuration.setEnabled(False)
+                
+                # Check if we need to disable generate button
+                if not self.sequences_data:
+                    self.has_saved_config = False
+                    self.update_generate_button_state()
                 
         except AttributeError:
             pass
@@ -808,6 +890,10 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             data["generate"] = self.spinBox_generate.value()
             data["max_len"] = self.spinBox_max_len.value()
             data["min_len"] = self.spinBox_min_len.value()
+            
+            # Mark that we have saved configuration
+            self.has_saved_config = True
+            self.update_generate_button_state()
             
             QMessageBox.information(self, "Success", "Random generation configuration saved")
             
@@ -994,6 +1080,10 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
                 self.load_inserts_table(data["inserts"])
                 self.table_inserts.selectRow(current_row)
                 
+                # Mark that we have saved configuration
+                self.has_saved_config = True
+                self.update_generate_button_state()
+                
                 QMessageBox.information(self, "Success", "Insert configuration saved")
                 
         except (AttributeError, KeyError, IndexError):
@@ -1023,6 +1113,10 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
                 # Update table
                 self.load_repeats_table(data["repeats"])
                 self.table_repeats.selectRow(current_row)
+                
+                # Mark that we have saved configuration
+                self.has_saved_config = True
+                self.update_generate_button_state()
                 
                 QMessageBox.information(self, "Success", "Repeat configuration saved")
                 
@@ -1093,6 +1187,16 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
     def generate_files(self):
         """Generate output files"""
         try:
+            # Check if proportion sum is valid
+            if not self.check_proportion_sum_valid():
+                QMessageBox.warning(
+                    self, 
+                    "Proportion Error", 
+                    "The sum of proportion values (A, T, C, G) must equal 1.0.\n"
+                    "Please adjust the values and try again."
+                )
+                return
+            
             # Build complete configuration
             config = self.build_config()
             
@@ -1383,6 +1487,10 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
                 self.doubleSpinBox_T.setValue(proportion.get("T", 0.25))
                 self.doubleSpinBox_C.setValue(proportion.get("C", 0.25))
                 self.doubleSpinBox_G.setValue(proportion.get("G", 0.25))
+                
+                # Mark as having saved config since we imported it
+                self.has_saved_config = True
+                self.update_generate_button_state()
             
         except Exception as e:
             QMessageBox.critical(
@@ -1430,6 +1538,10 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             self.spinBox_generate.setValue(0)
             self.spinBox_max_len.setValue(1000)
             self.spinBox_min_len.setValue(500)
+            
+            # Reset saved config state
+            self.has_saved_config = False
+            self.update_generate_button_state()
             
         except AttributeError:
             pass

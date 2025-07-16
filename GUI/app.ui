@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1079</width>
+    <width>1185</width>
     <height>850</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1079</width>
+    <width>1185</width>
     <height>850</height>
    </size>
   </property>
@@ -69,11 +69,14 @@
               <rect>
                <x>12</x>
                <y>32</y>
-               <width>488</width>
+               <width>513</width>
                <height>136</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_23">
+              <property name="spacing">
+               <number>6</number>
+              </property>
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
@@ -185,6 +188,12 @@
               </item>
               <item>
                <widget class="QGroupBox" name="group_proportion">
+                <property name="minimumSize">
+                 <size>
+                  <width>344</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="title">
                  <string>Proportion</string>
                 </property>
@@ -193,6 +202,12 @@
                   <layout class="QHBoxLayout" name="horizontalLayout_17">
                    <item>
                     <widget class="QGroupBox" name="group_A">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
                      <property name="title">
                       <string>A</string>
                      </property>
@@ -202,6 +217,18 @@
                      <layout class="QVBoxLayout" name="verticalLayout_16">
                       <item>
                        <widget class="QDoubleSpinBox" name="doubleSpinBox_A">
+                        <property name="minimumSize">
+                         <size>
+                          <width>50</width>
+                          <height>26</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>50</width>
+                          <height>26</height>
+                         </size>
+                        </property>
                         <property name="maximum">
                          <double>1.000000000000000</double>
                         </property>
@@ -218,6 +245,12 @@
                    </item>
                    <item>
                     <widget class="QGroupBox" name="group_T">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
                      <property name="title">
                       <string>T</string>
                      </property>
@@ -227,6 +260,18 @@
                      <layout class="QVBoxLayout" name="verticalLayout_17">
                       <item>
                        <widget class="QDoubleSpinBox" name="doubleSpinBox_T">
+                        <property name="minimumSize">
+                         <size>
+                          <width>50</width>
+                          <height>26</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>50</width>
+                          <height>26</height>
+                         </size>
+                        </property>
                         <property name="maximum">
                          <double>1.000000000000000</double>
                         </property>
@@ -243,6 +288,12 @@
                    </item>
                    <item>
                     <widget class="QGroupBox" name="group_C">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
                      <property name="title">
                       <string>C</string>
                      </property>
@@ -252,6 +303,18 @@
                      <layout class="QVBoxLayout" name="verticalLayout_18">
                       <item>
                        <widget class="QDoubleSpinBox" name="doubleSpinBox_C">
+                        <property name="minimumSize">
+                         <size>
+                          <width>50</width>
+                          <height>26</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>50</width>
+                          <height>26</height>
+                         </size>
+                        </property>
                         <property name="maximum">
                          <double>1.000000000000000</double>
                         </property>
@@ -268,6 +331,12 @@
                    </item>
                    <item>
                     <widget class="QGroupBox" name="group_G">
+                     <property name="minimumSize">
+                      <size>
+                       <width>70</width>
+                       <height>0</height>
+                      </size>
+                     </property>
                      <property name="title">
                       <string>G</string>
                      </property>
@@ -277,6 +346,18 @@
                      <layout class="QVBoxLayout" name="verticalLayout_19">
                       <item>
                        <widget class="QDoubleSpinBox" name="doubleSpinBox_G">
+                        <property name="minimumSize">
+                         <size>
+                          <width>50</width>
+                          <height>26</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>50</width>
+                          <height>26</height>
+                         </size>
+                        </property>
                         <property name="maximum">
                          <double>1.000000000000000</double>
                         </property>
@@ -1250,19 +1331,6 @@
          <number>15</number>
         </property>
         <item>
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
          <widget class="QPushButton" name="btn_generate">
           <property name="minimumSize">
            <size>
@@ -1277,6 +1345,22 @@
            <string>Generate</string>
           </property>
          </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>9</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1347,7 +1431,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1079</width>
+     <width>1185</width>
      <height>22</height>
     </rect>
    </property>
