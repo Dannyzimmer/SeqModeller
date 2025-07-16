@@ -11,3 +11,7 @@ env
 GUI/about_ui.py
 GUI/app_ui.py
 GUI/insert_form_ui.py
+SeqModeller.cflags
+SeqModeller.creator.user
+SeqModeller.cxxflags
+.qtc_clangd/compile_commands.json

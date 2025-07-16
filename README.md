@@ -15,27 +15,75 @@ A powerful GUI application for generating synthetic DNA sequences with customiza
 - **Session Management**: Recent files with persistent output path associations
 - **Import/Export**: Save and load configurations for reproducible results
 
-## Requirements
-
-- Python 3.8+
-- PyQt6
-
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/SeqModeller.git
-cd SeqModeller
-```
+### System Requirements
+- **Operating System**: Linux, Windows, or macOS
+- **Python**: 3.10 or higher (for source installation)
 
-2. Install dependencies:
-```bash
-pip install PyQt6
-```
+### Method 1: Using the Compiled Binary (Easiest)
 
-3. Run the application:
+If you are on **Linux x86-64**, you can download and run the precompiled binary:
+
+1. Download the latest release:
+   ```bash
+   wget https://github.com/Dannyzimmer/SeqModeller/releases/download/v0.2.0/SeqModeller_v0.2.0_linux_x64.zip
+   ```
+
+2. Extract and run:
+   ```bash
+   unzip SeqModeller_v0.2.0_linux_x64.zip
+   cd SeqModeller_v0.2.0_linux_x64
+   ./SeqModeller
+   ```
+
+> [!NOTE]
+> If the binary doesn't work on your system, try the conda environment method below.
+
+### Method 2: Using Conda Environment (Recommended)
+
+This method works on all supported platforms and provides the most reliable installation.
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Dannyzimmer/SeqModeller.git
+   cd SeqModeller
+   ```
+
+2. **Create and activate the Conda environment**:
+   ```bash
+   conda env create -f environment.yml
+   conda activate seqmodeller
+   ```
+
+3. **Run the application**:
+   ```bash
+   python3 main.py
+   ```
+
+### Method 3: Manual Installation (Advanced Users)
+
+If you prefer to install dependencies manually or encounter issues with the conda environment:
+
+1. **Install Python dependencies**:
+   ```bash
+   pip install PyQt6 PyQt6-tools PySide6
+   ```
+
+2. **Clone and run**:
+   ```bash
+   git clone https://github.com/Dannyzimmer/SeqModeller.git
+   cd SeqModeller
+   python3 main.py
+   ```
+
+### Building Resources (Optional)
+
+If you modify the UI files or resources, you can rebuild them:
+
 ```bash
-python main.py
+conda activate seqmodeller
+python3 ./dev/build_resources.py --all --verbose
 ```
 
 ## Quick Start
