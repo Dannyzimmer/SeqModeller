@@ -101,7 +101,7 @@
           </font>
          </property>
          <property name="text">
-          <string>[SeqModeller](https://github.com/Dannyzimmer/SeqModeller.git) *v0.1.0*</string>
+          <string>[SeqModeller](https://github.com/Dannyzimmer/SeqModeller.git) *v1.0.0*</string>
          </property>
          <property name="textFormat">
           <enum>Qt::TextFormat::MarkdownText</enum>

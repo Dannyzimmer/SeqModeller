@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>SeqModeller</string>
+   <string>SeqModeller - v1.0.0</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources.qrc">

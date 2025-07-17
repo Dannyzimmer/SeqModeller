@@ -1,5 +1,7 @@
 # SeqModeller
 
+![Version](https://img.shields.io/github/v/tag/Dannyzimmer/SeqModeller)
+
 A powerful GUI application for generating synthetic DNA sequences with customizable patterns, insertions, and repeats. Perfect for bioinformatics research, testing sequence analysis tools, and creating controlled datasets.
 
 <img src="images/screenshot.png" alt="SeqModeller Interface" width="700"/>
@@ -27,13 +29,13 @@ If you are on **Linux x86-64**, you can download and run the precompiled binary:
 
 1. Download the latest release:
    ```bash
-   wget https://github.com/Dannyzimmer/SeqModeller/releases/download/v0.3.0/SeqModeller-v0.3.0_Linux_x86-64.zip
+   wget https://github.com/Dannyzimmer/SeqModeller/releases/download/v1.0.0/SeqModeller-v1.0.0_Linux_x86-64.zip
    ```
 
 2. Extract and run:
    ```bash
-   unzip SeqModeller-v0.3.0_Linux_x86-64.zip
-   cd SeqModeller-v0.3.0_Linux_x86-64
+   unzip SeqModeller-v1.0.0_Linux_x86-64.zip
+   cd SeqModeller-v1.0.0_Linux_x86-64
    ./SeqModeller
    ```
 
