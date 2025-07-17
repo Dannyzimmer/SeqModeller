@@ -784,13 +784,6 @@
                      </property>
                     </spacer>
                    </item>
-                   <item>
-                    <widget class="QPushButton" name="btn_random_generation_save">
-                     <property name="text">
-                      <string>Save</string>
-                     </property>
-                    </widget>
-                   </item>
                   </layout>
                  </item>
                 </layout>
@@ -1095,13 +1088,6 @@
                           </property>
                          </spacer>
                         </item>
-                        <item>
-                         <widget class="QPushButton" name="btn_insert_save">
-                          <property name="text">
-                           <string>Save</string>
-                          </property>
-                         </widget>
-                        </item>
                        </layout>
                       </item>
                      </layout>
@@ -1304,13 +1290,6 @@
                       </property>
                      </spacer>
                     </item>
-                    <item>
-                     <widget class="QPushButton" name="btn_rep_save">
-                      <property name="text">
-                       <string>Save</string>
-                      </property>
-                     </widget>
-                    </item>
                    </layout>
                   </widget>
                  </item>
@@ -1345,80 +1324,6 @@
            <string>Generate</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>9</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_33">
-          <property name="spacing">
-           <number>2</number>
-          </property>
-          <item>
-           <widget class="QRadioButton" name="radioButton_only_report">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Only report</string>
-            </property>
-            <property name="autoExclusive">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QRadioButton" name="radioButton_only_json">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Only config</string>
-            </property>
-            <property name="autoRepeat">
-             <bool>false</bool>
-            </property>
-            <property name="autoExclusive">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -1620,38 +1525,6 @@
     <hint type="destinationlabel">
      <x>1050</x>
      <y>439</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_only_report</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>radioButton_only_json</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>936</x>
-     <y>837</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>933</x>
-     <y>857</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_only_json</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>radioButton_only_report</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1011</x>
-     <y>861</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1012</x>
-     <y>840</y>
     </hint>
    </hints>
   </connection>

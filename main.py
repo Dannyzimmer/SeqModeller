@@ -99,6 +99,9 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
         # Variable to track if any configuration has been saved
         self.has_saved_config = False
         
+        # Flag to prevent auto-save during programmatic changes
+        self.loading_data = False
+        
         # Configure model for QListView
         self.sequence_model = QStringListModel()
         self.sequence_list.setModel(self.sequence_model)
@@ -154,10 +157,25 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             # Connection to handle sequence renaming
             self.sequence_model.dataChanged.connect(self.on_sequence_renamed)
             
-            # Tab save button connections
-            self.btn_random_generation_save.clicked.connect(self.save_random_generation_config)
-            self.btn_insert_save.clicked.connect(self.save_insert_config)
-            self.btn_rep_save.clicked.connect(self.save_repeat_config)
+            # Automatic save connections for random generation
+            self.spinBox_generate.valueChanged.connect(self.auto_save_random_generation)
+            self.spinBox_max_len.valueChanged.connect(self.auto_save_random_generation)
+            self.spinBox_min_len.valueChanged.connect(self.auto_save_random_generation)
+            
+            # Automatic save connections for insert configuration
+            self.lineEdit_insert_seq.textChanged.connect(self.auto_save_insert_config)
+            self.spinBox_insert_total.valueChanged.connect(self.auto_save_insert_config)
+            self.spinBox_insert_max_split.valueChanged.connect(self.auto_save_insert_config)
+            self.spinBox_insert_min_split.valueChanged.connect(self.auto_save_insert_config)
+            self.spinBox_insert_ave_gap.valueChanged.connect(self.auto_save_insert_config)
+            self.spinBox_insert_sd_gap.valueChanged.connect(self.auto_save_insert_config)
+            self.doubleSpinBox_insert_mut_rate.valueChanged.connect(self.auto_save_insert_config)
+            
+            # Automatic save connections for repeat configuration
+            self.lineEdit_pattern.textChanged.connect(self.auto_save_repeat_config)
+            self.doubleSpinBox_likelihood.valueChanged.connect(self.auto_save_repeat_config)
+            self.spinBox_max_reps.valueChanged.connect(self.auto_save_repeat_config)
+            self.spinBox_min_reps.valueChanged.connect(self.auto_save_repeat_config)
             
             # Insert and repeat table connections
             self.btn_new_insert.clicked.connect(self.add_new_insert)
@@ -880,8 +898,8 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
         except AttributeError:
             pass
     
-    def save_random_generation_config(self):
-        """Save random generation configuration"""
+    def auto_save_random_generation(self):
+        """Automatically save random generation configuration when values change"""
         if not self.current_sequence:
             return
         
@@ -894,8 +912,6 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             # Mark that we have saved configuration
             self.has_saved_config = True
             self.update_generate_button_state()
-            
-            QMessageBox.information(self, "Success", "Random generation configuration saved")
             
         except (AttributeError, KeyError):
             pass
@@ -1012,6 +1028,9 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             if current_row < len(data["inserts"]):
                 insert = data["inserts"][current_row]
                 
+                # Set loading flag to prevent auto-save during data loading
+                self.loading_data = True
+                
                 # Load values into editing widgets
                 self.lineEdit_insert_seq.setText(insert.get("sequence", ""))
                 self.spinBox_insert_total.setValue(insert.get("total", 0))
@@ -1020,6 +1039,9 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
                 self.spinBox_insert_ave_gap.setValue(insert.get("ave_gap", 0))
                 self.spinBox_insert_sd_gap.setValue(insert.get("sd_gap", 0))
                 self.doubleSpinBox_insert_mut_rate.setValue(insert.get("mutation_rate", 0.0))
+                
+                # Clear loading flag
+                self.loading_data = False
                 
         except (AttributeError, KeyError, IndexError):
             pass
@@ -1043,24 +1065,29 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             if current_row < len(data["repeats"]):
                 repeat = data["repeats"][current_row]
                 
+                # Set loading flag to prevent auto-save during data loading
+                self.loading_data = True
+                
                 # Load values into editing widgets
                 self.lineEdit_pattern.setText(repeat.get("pattern", ""))
                 self.doubleSpinBox_likelihood.setValue(repeat.get("likelihood", 0.0))
                 self.spinBox_max_reps.setValue(repeat.get("pattern_max_reps", 1))
                 self.spinBox_min_reps.setValue(repeat.get("pattern_min_reps", 1))
                 
+                # Clear loading flag
+                self.loading_data = False
+                
         except (AttributeError, KeyError, IndexError):
             pass
     
-    def save_insert_config(self):
-        """Save insert configuration"""
-        if not self.current_sequence:
+    def auto_save_insert_config(self):
+        """Automatically save insert configuration when values change"""
+        if not self.current_sequence or self.loading_data:
             return
         
         try:
             current_row = self.table_inserts.currentRow()
             if current_row < 0:
-                QMessageBox.warning(self, "Warning", "Please select an insert to save")
                 return
             
             data = self.sequences_data[self.current_sequence]
@@ -1084,20 +1111,17 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
                 self.has_saved_config = True
                 self.update_generate_button_state()
                 
-                QMessageBox.information(self, "Success", "Insert configuration saved")
-                
         except (AttributeError, KeyError, IndexError):
             pass
     
-    def save_repeat_config(self):
-        """Save repeat configuration"""
-        if not self.current_sequence:
+    def auto_save_repeat_config(self):
+        """Automatically save repeat configuration when values change"""
+        if not self.current_sequence or self.loading_data:
             return
         
         try:
             current_row = self.table_repeats.currentRow()
             if current_row < 0:
-                QMessageBox.warning(self, "Warning", "Please select a repeat to save")
                 return
             
             data = self.sequences_data[self.current_sequence]
@@ -1117,8 +1141,6 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
                 # Mark that we have saved configuration
                 self.has_saved_config = True
                 self.update_generate_button_state()
-                
-                QMessageBox.information(self, "Success", "Repeat configuration saved")
                 
         except (AttributeError, KeyError, IndexError):
             pass
@@ -1205,20 +1227,14 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
                 return
             
             # Get file paths
-            fasta_path = getattr(self.lineEdit_fasta, 'text', lambda: '')()
-            report_path = getattr(self.lineEdit_report, 'text', lambda: '')()
-            config_path = getattr(self.lineEdit_config_json, 'text', lambda: '')()
+            fasta_path = getattr(self.lineEdit_fasta, 'text', lambda: '')().strip()
+            report_path = getattr(self.lineEdit_report, 'text', lambda: '')().strip()
+            config_path = getattr(self.lineEdit_config_json, 'text', lambda: '')().strip()
             
-            # Check generation options
-            only_report = getattr(self.radioButton_only_report, 'isChecked', lambda: False)()
-            only_config = getattr(self.radioButton_only_json, 'isChecked', lambda: False)()
-            
-            if only_report:
-                config_path = None
-                fasta_path = None
-            elif only_config:
-                report_path = None
-                fasta_path = None
+            # Convert empty strings to None for the generator function
+            fasta_path = fasta_path if fasta_path else None
+            report_path = report_path if report_path else None
+            config_path = config_path if config_path else None
             
             if not any([fasta_path, report_path, config_path]):
                 QMessageBox.warning(self, "Warning", "Please select at least one output file")
