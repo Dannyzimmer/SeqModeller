@@ -29,13 +29,13 @@ If you are on **Linux x86-64**, you can download and run the precompiled binary:
 
 1. Download the latest release:
    ```bash
-   wget https://github.com/Dannyzimmer/SeqModeller/releases/download/v1.0.0/SeqModeller-v1.0.0_Linux_x86-64.zip
+   wget https://github.com/Dannyzimmer/SeqModeller/releases/download/v1.0.1/SeqModeller-v1.0.1_Linux_x86-64.zip
    ```
 
 2. Extract and run:
    ```bash
-   unzip SeqModeller-v1.0.0_Linux_x86-64.zip
-   cd SeqModeller-v1.0.0_Linux_x86-64
+   unzip SeqModeller-v1.0.1_Linux_x86-64.zip
+   cd SeqModeller-v1.0.1_Linux_x86-64
    ./SeqModeller
    ```
 
