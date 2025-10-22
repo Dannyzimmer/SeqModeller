@@ -102,12 +102,18 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
         # Flag to prevent auto-save during programmatic changes
         self.loading_data = False
         
+        # Map to track original names during renaming
+        self.renaming_map = {}  # Maps row index to original name
+        
         # Configure model for QListView
         self.sequence_model = QStringListModel()
         self.sequence_list.setModel(self.sequence_model)
         
         # Allow editing in QListView for renaming
         self.sequence_list.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.DoubleClicked)
+        
+        # Store the item being edited when double-clicked
+        self.sequence_list.doubleClicked.connect(self.on_sequence_edit_started)
         
         # Configure interface
         self.setup_connections()
@@ -820,40 +826,50 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
         except AttributeError:
             pass
     
+    def on_sequence_edit_started(self, index):
+        """Capture the name before editing starts"""
+        try:
+            row = index.row()
+            current_list = self.sequence_model.stringList()
+            if row < len(current_list):
+                # Store the original name at this position
+                self.renaming_map[row] = current_list[row]
+        except (AttributeError, IndexError):
+            pass
+    
     def on_sequence_renamed(self, top_left, bottom_right, roles):
         """Handle sequence renaming in QListView"""
         try:
-            if Qt.ItemDataRole.DisplayRole in roles:
-                # Get new name
+            if Qt.ItemDataRole.DisplayRole in roles or Qt.ItemDataRole.EditRole in roles:
+                # Get new name and row
                 new_name = self.sequence_model.data(top_left, Qt.ItemDataRole.DisplayRole)
                 row = top_left.row()
                 
-                # Get current list to find previous name
-                current_list = self.sequence_model.stringList()
-                if row < len(current_list):
-                    # Find previous name in sequences_data
-                    old_names = list(self.sequences_data.keys())
-                    if row < len(old_names):
-                        old_name = old_names[row]
-                        
-                        # Verify new name doesn't already exist
-                        if new_name != old_name and new_name not in self.sequences_data:
-                            # Rename in sequences_data
-                            if old_name in self.sequences_data:
-                                self.sequences_data[new_name] = self.sequences_data[old_name]
-                                self.sequences_data[new_name]["base_id"] = new_name
-                                del self.sequences_data[old_name]
-                                
-                                # Update current_sequence if it was renamed
-                                if self.current_sequence == old_name:
-                                    self.current_sequence = new_name
-                        
-                        elif new_name != old_name and new_name in self.sequences_data:
-                            # Name already exists, revert change
-                            QMessageBox.warning(self, "Warning", "Base ID already exists")
-                            current_list = self.sequence_model.stringList()
-                            current_list[row] = old_name
-                            self.sequence_model.setStringList(current_list)
+                # Get old name from the map we saved when editing started
+                old_name = self.renaming_map.get(row)
+                
+                if old_name and new_name != old_name:
+                    # Verify new name doesn't already exist
+                    if new_name not in self.sequences_data:
+                        # Rename in sequences_data
+                        if old_name in self.sequences_data:
+                            self.sequences_data[new_name] = self.sequences_data[old_name]
+                            self.sequences_data[new_name]["base_id"] = new_name
+                            del self.sequences_data[old_name]
+                            
+                            # Update current_sequence if it was renamed
+                            if self.current_sequence == old_name:
+                                self.current_sequence = new_name
+                    else:
+                        # Name already exists, revert change
+                        QMessageBox.warning(self, "Warning", "Base ID already exists")
+                        current_list = self.sequence_model.stringList()
+                        current_list[row] = old_name
+                        self.sequence_model.setStringList(current_list)
+                
+                # Clear this entry from the renaming map after use
+                if row in self.renaming_map:
+                    del self.renaming_map[row]
                             
         except (AttributeError, IndexError, KeyError):
             pass
@@ -866,16 +882,24 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
         data = self.sequences_data[base_id]
         
         try:
+            # Set loading flag to prevent auto-save during data loading
+            self.loading_data = True
+            
             # Load random generation configuration
             self.spinBox_generate.setValue(data.get("generate", 0))
             self.spinBox_max_len.setValue(data.get("max_len", 1000))
             self.spinBox_min_len.setValue(data.get("min_len", 500))
+            
+            # Clear loading flag
+            self.loading_data = False
             
             # Load tables
             self.load_inserts_table(data.get("inserts", []))
             self.load_repeats_table(data.get("repeats", []))
             
         except AttributeError:
+            # Make sure to clear loading flag even if there's an error
+            self.loading_data = False
             pass
     
     def load_inserts_table(self, inserts):
@@ -900,7 +924,7 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
     
     def auto_save_random_generation(self):
         """Automatically save random generation configuration when values change"""
-        if not self.current_sequence:
+        if not self.current_sequence or self.loading_data:
             return
         
         try:
@@ -1252,8 +1276,6 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
             
             # Generate files
             try:
-                from libs.Generator.generator import Generator
-                
                 generate_output_files(
                     config=config,
                     fasta_path=fasta_path,
@@ -1264,8 +1286,8 @@ class SeqModellerMainWindow(QMainWindow, Ui_MainWindow):
                 
                 QMessageBox.information(self, "Success", "Files generated successfully!")
                 
-            except ImportError:
-                QMessageBox.critical(self, "Error", "Generator module not found. Please ensure libs.Generator.generator is available.")
+            except ImportError as e:
+                QMessageBox.critical(self, "Error", f"Generator module not found: {str(e)}\nPlease ensure libs.Generator.generator is available.")
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Error generating files: {str(e)}")
                 
