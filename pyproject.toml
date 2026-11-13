@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "seqmodeller"
+dynamic = ["version"]
+description = "Desktop GUI for generating synthetic DNA, RNA and protein sequences with fastamodeller."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Daniel Pérez Rodríguez" }]
+dependencies = [
+    "PyQt6>=6.6",
+    "fastamodeller==1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-qt>=4.4",
+    "ruff>=0.6",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+seqmodeller = "seqmodeller.app:main"
+
+[tool.setuptools]
+packages = ["seqmodeller", "seqmodeller.domain", "seqmodeller.services", "seqmodeller.ui"]
+
+[tool.setuptools.dynamic]
+version = { attr = "seqmodeller.__version__" }
+
+[tool.setuptools.package-data]
+seqmodeller = [
+    "resources/*.ui",
+    "resources/*.json",
+    "resources/images/*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_ignores = true
+no_implicit_optional = true
+check_untyped_defs = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["seqmodeller.ui.main_window", "seqmodeller.ui.dialogs"]
+disable_error_code = ["attr-defined", "union-attr"]

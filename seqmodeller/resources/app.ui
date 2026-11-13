@@ -25,11 +25,6 @@
   <property name="windowTitle">
    <string>SeqModeller - v1.0.1</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="../resources.qrc">
-    <normaloff>:/images/window_icon</normaloff>
-    <normalon>:/images/window_icon</normalon>:/images/window_icon</iconset>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
@@ -798,7 +793,7 @@
                    <item>
                     <layout class="QVBoxLayout" name="verticalLayout_5">
                      <item>
-                      <widget class="QTableWidget" name="table_inserts">
+                      <widget class="QTableView" name="table_inserts">
                        <property name="minimumSize">
                         <size>
                          <width>0</width>
@@ -1105,7 +1100,7 @@
                  <item>
                   <layout class="QVBoxLayout" name="verticalLayout_7">
                    <item>
-                    <widget class="QTableWidget" name="table_repeats">
+                    <widget class="QTableView" name="table_repeats">
                      <property name="minimumSize">
                       <size>
                        <width>150</width>
@@ -1380,9 +1375,7 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="../resources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>horizontalSlider_min_len</sender>

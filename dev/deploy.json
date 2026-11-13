@@ -2,10 +2,7 @@
   "singularity_image": "",
   "deploy_dirs": [],
   "pre_build": {
-    "enabled": true,
-    "script": "build_resources.py",
-    "working_directory": ".",
-    "args": ["--all", "--verbose"]
+    "enabled": false
   },
   "nuitka": {
     "remove_output": true,
@@ -16,9 +13,9 @@
     "output_filename": "SeqModeller",
     "script": "main.py",
     "other_flags": [
-      "--include-data-files=config_template.json=config_template.json",
-      "--include-data-dir=GUI=GUI",
-      "--include-data-dir=images=images",
+      "--include-package-data=seqmodeller",
+      "--include-package=fastamodeller",
+      "--include-package-data=fastamodeller",
       "--enable-plugin=pyqt6"
     ]
   }

@@ -2,108 +2,93 @@
 
 ![Version](https://img.shields.io/github/v/tag/Dannyzimmer/SeqModeller)
 
-A powerful GUI application for generating synthetic DNA sequences with customizable patterns, insertions, and repeats. Perfect for bioinformatics research, testing sequence analysis tools, and creating controlled datasets.
+A PyQt6 desktop application for generating synthetic DNA, RNA and protein
+sequences. SeqModeller is a GUI frontend for the
+[fastaModeller](https://pypi.org/project/fastamodeller/) command line tool.
 
-<img src="images/screenshot.png" alt="SeqModeller Interface" width="700"/>
+<img src="seqmodeller/resources/images/screenshot.png" alt="SeqModeller Interface" width="700"/>
 
 ## Features
 
-- **Intuitive GUI**: Easy-to-use interface built with PyQt6
-- **Flexible Sequence Generation**: Configure nucleotide proportions, sequence lengths, and generation counts
-- **Pattern Repeats**: Add repeating patterns with customizable likelihood and repetition ranges
-- **Sequence Insertions**: Insert specific sequences with mutation rates and split configurations
-- **Batch Processing**: Generate multiple sequence batches with different parameters
-- **Multiple Output Formats**: Generate FASTA files, detailed reports, and JSON configurations
-- **Session Management**: Recent files with persistent output path associations
-- **Import/Export**: Save and load configurations for reproducible results
+- **DNA, RNA and protein** alphabets, including IUPAC ambiguity symbols.
+- **Per-batch composition** with relative weights, uniform/normalize helpers and
+  add/remove symbol controls.
+- Randomized sequence batches with configurable length ranges and counts.
+- Tandem **repeat patterns** with likelihood and min/max repetition counts.
+- **Inserts** with split points, normally distributed gaps and per-residue
+  mutation rates.
+- **Validation** both in the GUI and through the external
+  `fastamodeller validate` command.
+- Generate **FASTA**, a detailed **report** and a reproducible **config JSON**
+  in any combination.
+- Random or explicit **seeds**; the resolved seed is stored in the exported
+  configuration.
+- **Background generation** with a progress dialog and cancellation.
+- Recent files, associated output paths, last used directory and unsaved-change
+  protection.
+- Import and migration of configurations created by older SeqModeller versions.
+
+## Requirements
+
+- Python 3.10 or newer.
+- `PyQt6`.
+- The `fastamodeller` command line tool. The pinned version is `1.0.0`.
 
 ## Installation
 
-### System Requirements
-- **Operating System**: Linux, Windows, or macOS
-- **Python**: 3.10 or higher (for source installation)
-
-### Method 1: Using the Compiled Binary (Easiest)
-
-If you are on **Linux x86-64**, you can download and run the precompiled binary:
-
-1. Download the latest release:
-   ```bash
-   wget https://github.com/Dannyzimmer/SeqModeller/releases/download/v1.0.1/SeqModeller-v1.0.1_Linux_x86-64.zip
-   ```
-
-2. Extract and run:
-   ```bash
-   unzip SeqModeller-v1.0.1_Linux_x86-64.zip
-   cd SeqModeller-v1.0.1_Linux_x86-64
-   ./SeqModeller
-   ```
-
-> [!NOTE]
-> If the binary doesn't work on your system, try the conda environment method below.
-
-### Method 2: Using Conda Environment (Recommended)
-
-This method works on all supported platforms and provides the most reliable installation.
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Dannyzimmer/SeqModeller.git
-   cd SeqModeller
-   ```
-
-2. **Create and activate the Conda environment**:
-   ```bash
-   conda env create -f environment.yml
-   conda activate seqmodeller
-   ```
-
-3. **Run the application**:
-   ```bash
-   python3 main.py
-   ```
-
-### Method 3: Manual Installation (Advanced Users)
-
-If you prefer to install dependencies manually or encounter issues with the conda environment:
-
-1. **Install Python dependencies**:
-   ```bash
-   pip install PyQt6 PyQt6-tools PySide6
-   ```
-
-2. **Clone and run**:
-   ```bash
-   git clone https://github.com/Dannyzimmer/SeqModeller.git
-   cd SeqModeller
-   python3 main.py
-   ```
-
-### Building Resources (Optional)
-
-If you modify the UI files or resources, you can rebuild them:
+### Conda environment (recommended)
 
 ```bash
+conda env create -f environment.yml
 conda activate seqmodeller
-python3 ./dev/build_resources.py --all --verbose
+python main.py
 ```
 
-## Quick Start
+### pip / virtualenv
 
-1. **Configure General Settings**: Set ID padding, sequence wrapping, and nucleotide proportions
-2. **Add Sequence Batches**: Click "Add" to create new sequence batches with unique Base IDs
-3. **Configure Generation**: Set the number of sequences, min/max lengths for each batch
-4. **Add Patterns** (optional): Define repeating patterns with likelihood and repetition ranges
-5. **Add Insertions** (optional): Insert specific sequences with mutation and split parameters
-6. **Set Output Files**: Choose where to save your FASTA, report, and configuration files
-7. **Generate**: Click "Generate" to create your synthetic sequences
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+python main.py
+```
 
-## Configuration Structure
+`fastamodeller` is installed as a Python dependency. SeqModeller looks for the
+`fastamodeller` (or legacy `fastaModeller`) executable in `PATH`, then falls
+back to `python -m fastamodeller`. You can override the command with the
+`FASTAMODELLER_BIN` environment variable.
 
-SeqModeller uses JSON configuration files with the following structure:
+### Compiled binary
+
+The Nuitka build includes the `fastamodeller` package and a small internal CLI
+launcher (`--fastamodeller`), so the executable stays self-contained. Rebuild
+with:
+
+```bash
+python dev/deploy.py --config dev/deploy.json --verbose
+```
+
+## Quick start
+
+1. Select the **molecule** (DNA, RNA or protein).
+2. Enter a **Base ID** and click **Add** to create a batch.
+3. Configure the sequence count and length range.
+4. Edit the batch **Composition** tab.
+5. Optionally add repeat patterns and inserts.
+6. Select one or more output files.
+7. Click **Generate**.
+
+The application validates the configuration with the GUI rules and with
+`fastamodeller validate` before starting the external process.
+
+## Configuration format
+
+SeqModeller reads and writes the `fastamodeller` JSON schema:
 
 ```json
 {
+    "molecule": "dna",
     "id_padding": 4,
     "seq_wrap": 70,
     "seed": 12345,
@@ -111,26 +96,31 @@ SeqModeller uses JSON configuration files with the following structure:
         {
             "base_id": "TEST",
             "generate": 10,
-            "max_len": 1000,
             "min_len": 500,
-            "proportion": {"A": 0.25, "T": 0.25, "C": 0.25, "G": 0.25},
+            "max_len": 1000,
+            "proportion": {
+                "A": 0.20,
+                "T": 0.25,
+                "C": 0.20,
+                "G": 0.35
+            },
             "repeats": [
                 {
                     "likelihood": 0.5,
-                    "pattern": "ATCG",
-                    "pattern_max_reps": 50,
-                    "pattern_min_reps": 10
+                    "pattern": "ATCATT",
+                    "pattern_min_reps": 10,
+                    "pattern_max_reps": 50
                 }
             ],
             "inserts": [
                 {
                     "total": 4,
-                    "max_split": 2,
                     "min_split": 0,
-                    "ave_gap": 100,
-                    "sd_gap": 20,
+                    "max_split": 5,
+                    "ave_gap": 5,
+                    "sd_gap": 2,
                     "mutation_rate": 0.05,
-                    "sequence": "ATCGATCGATCG"
+                    "sequence": "CCCCCCTTAAACACTTATACGGTAG"
                 }
             ]
         }
@@ -138,34 +128,71 @@ SeqModeller uses JSON configuration files with the following structure:
 }
 ```
 
-## Output Files
+Notes:
 
-- **FASTA**: Standard FASTA format with generated sequences
-- **Report**: Detailed generation statistics and parameters
-- **Config JSON**: Complete configuration for reproducibility
+- `proportion` values are relative weights; `fastamodeller` normalizes them.
+- `seq_wrap: false` or `0` disables line wrapping.
+- `seed: false` selects a random seed. The resolved seed is written to the
+  report and to the exported configuration.
+- Only one molecule can be used per configuration.
+- Old configurations without `molecule`, `seq_wrap` or `seed` are migrated
+  automatically when opened.
 
-## Advanced Features
+## Output files
 
-### Pattern Repeats
-- Define custom DNA patterns that repeat throughout sequences
-- Set likelihood of occurrence and min/max repetition counts
-- Useful for simulating microsatellites or tandem repeats
+- **FASTA**: generated sequences.
+- **Report**: seed, composition, GC content, ambiguous fraction, insert
+  mutations/gaps and repeat counts.
+- **Config JSON**: normalized configuration, including the resolved seed.
 
-### Sequence Insertions
-- Insert specific sequences at random positions
-- Configure mutation rates for realistic variation
-- Control sequence splitting and gap distribution
-- Perfect for simulating known motifs or regulatory elements
+Files are written atomically by the `fastamodeller` CLI and by the GUI config
+writer.
 
-### Session Management
-- Recent files menu with automatic path association
-- Persistent settings across application sessions
-- Easy project switching and configuration reuse
+## Architecture
+
+```text
+main.py                       # entry point
+seqmodeller/
+  app.py                      # QApplication and internal CLI launcher
+  paths.py                    # resources, version, app data directory
+  domain/
+    molecules.py              # DNA/RNA/protein alphabets
+    models.py                 # AppState, batches, inserts, repeats
+    validation.py             # pure validation rules
+    serialization.py          # JSON <-> state conversion and migration
+  services/
+    generator.py              # Generator protocol and DTOs
+    fastamodeller_cli.py      # subprocess adapter for the CLI
+    files.py                  # atomic writes and path helpers
+    session.py                # recent files and last directory
+  ui/
+    main_window.py            # presentation and wiring
+    models.py                 # Qt list/table models
+    widgets.py                # slider/spinbox sync, weight delegate
+    dialogs.py                # About and insert dialogs
+  resources/                  # .ui files, images, version and template
+tests/                        # domain, service and UI tests
+```
+
+The UI depends on the `Generator` protocol, not on `subprocess` or on the
+`fastamodeller` internals. The CLI is the only generation boundary, which keeps
+the presentation and engine responsibilities separate.
+
+## Development
+
+```bash
+python -m pytest
+python -m ruff check seqmodeller tests main.py dev/update_version.py
+python -m mypy seqmodeller
+```
+
+Version references are synchronized from
+`seqmodeller/resources/version.json`:
+
+```bash
+python dev/update_version.py
+```
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For questions, bug reports, or feature requests, please open an issue on GitHub.
+This project is licensed under the MIT License. See `LICENSE.txt`.
